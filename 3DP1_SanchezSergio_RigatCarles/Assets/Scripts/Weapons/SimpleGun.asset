@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b13b18fc68ffbd4dbdc87065566d575, type: 3}
+  m_Name: SimpleGun
+  m_EditorClassIdentifier: 
+  weaponName: 
+  weaponModel: {fileID: 2305033871253001528, guid: 0358477b75f874e488fe879072c84072, type: 3}
+  weaponAnimation: {fileID: 2369874812793831403, guid: 0358477b75f874e488fe879072c84072, type: 3}
+  damage: 10
+  shootingRatio: 1
+  maxShootDist: 1000
+  ammoPerShot: 1
+  ammo_maxInside: 10
+  ammo_currentInside: 0
+  ammo_availableStorage: 0
