@@ -42,11 +42,6 @@ public class RaycastShooting : MonoBehaviour
         if (Input.GetKeyDown(reloadKey)) { weapon.reload(); }
     }
 
-    void OnDrawGizmos() 
-    {
-        Debug.DrawRay(ray.origin, ray.direction);
-    }
-
     void raycastShoot()
     {
         ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
@@ -54,8 +49,6 @@ public class RaycastShooting : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, weapon.getMaxShootDist(), shootingMask))
         {
-            Debug.Log("Shoot to: " + hitInfo.collider.gameObject.name);
-
             decalPool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
             Instantiate(decalParticles, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
 
