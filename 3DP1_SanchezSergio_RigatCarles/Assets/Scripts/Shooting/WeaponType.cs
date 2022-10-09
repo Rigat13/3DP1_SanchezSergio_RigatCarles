@@ -29,27 +29,30 @@ public class WeaponType : ScriptableObject
     public int getAmmoCurrentInside() { return ammo_currentInside; }
     public int getAmmoAvailableStorage() { return ammo_availableStorage; }
 
-    public void shoot()
+    public bool shoot()
     {
         if (canShoot(ammoPerShot))
         {
             decreaseAmmo(ammoPerShot);
             animateShoot();
+            return true;
         }
         else
         {
             animateCantShoot();
+            return false;
         }
     }
 
     public bool canShoot(int ammoRequired) { return ammo_currentInside >= ammoRequired; }
+    public bool canShoot() { return canShoot(ammoPerShot); }
 
     public void decreaseAmmo(int amount)
     {
         ammo_currentInside -= amount;
     }
 
-    public void reload()
+    public bool reload()
     {
         if (canReload())
         {
@@ -60,10 +63,12 @@ public class WeaponType : ScriptableObject
             ammo_currentInside += ammo_ToReload;
 
             animateReload();
+            return true;
         }
         else
         {
             animateCantReload();
+            return false;
         }
     }
 
@@ -97,6 +102,4 @@ public class WeaponType : ScriptableObject
         Debug.Log("Bullets in gun: " + ammo_currentInside+ " Bullets outside: " + ammo_availableStorage+ " Bullets max: " + ammo_maxInside);
     }
     
-
-
 }

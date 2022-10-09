@@ -36,14 +36,10 @@ public class RaycastShooting : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            shoot();
-            ammoUpdate.Invoke(weapon.getAmmoCurrentInside(), weapon.getAmmoAvailableStorage());
+            bool hasShooted = weapon.shoot();
+            if(hasShooted) { raycastShoot(); updateAmmoUI();}
         }
-        if (Input.GetKeyDown(reloadKey))
-        {
-            Debug.Log("intenta recarregar");
-            weapon.reload();
-        }
+        if (Input.GetKeyDown(reloadKey)) { weapon.reload(); }
     }
 
     void OnDrawGizmos() 
@@ -51,12 +47,11 @@ public class RaycastShooting : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction);
     }
 
-    void shoot()
+    void raycastShoot()
     {
-        weapon.shoot();
-
         ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hitInfo;
+
         if (Physics.Raycast(ray, out hitInfo, weapon.getMaxShootDist(), shootingMask))
         {
             Debug.Log("Shoot to: " + hitInfo.collider.gameObject.name);
@@ -70,5 +65,10 @@ public class RaycastShooting : MonoBehaviour
             }
         }
         Instantiate(decalParticles, weaponShootingDummy.position, weaponShootingDummy.rotation);
+    }
+
+    void updateAmmoUI()
+    {
+        ammoUpdate.Invoke(weapon.getAmmoCurrentInside(), weapon.getAmmoAvailableStorage());
     }
 }
