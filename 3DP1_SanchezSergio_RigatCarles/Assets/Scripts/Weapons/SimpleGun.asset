@@ -20,8 +20,8 @@ MonoBehaviour:
   maxShootDist: 1000
   ammoPerShot: 1
   ammo_maxInside: 25
-  ammo_currentInside: 22
-  ammo_availableStorage: 228
+  ammo_currentInside: 25
+  ammo_availableStorage: 120
   sound_shoot: {fileID: 8300000, guid: dd916bfe4e6969f44990581a217f7c86, type: 3}
   sound_collide: {fileID: 8300000, guid: cc5fa21af806ada4bb806c787ab62104, type: 3}
   sound_reload: {fileID: 8300000, guid: 081a3a03c5894fb4ca8d62f1f9801e44, type: 3}

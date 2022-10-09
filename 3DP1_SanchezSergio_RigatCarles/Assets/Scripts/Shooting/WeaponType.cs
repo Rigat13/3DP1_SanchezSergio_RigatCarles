@@ -86,7 +86,7 @@ public class WeaponType : ScriptableObject
 
     private bool enoughAmmoToReload(int ammo_SpaceLeft) { return ammo_availableStorage >= ammo_SpaceLeft; }
 
-    public bool canReload() { return ammo_availableStorage >= 0; }
+    public bool canReload() { return ammo_availableStorage > 0; }
 
     void animateShoot()
     {
