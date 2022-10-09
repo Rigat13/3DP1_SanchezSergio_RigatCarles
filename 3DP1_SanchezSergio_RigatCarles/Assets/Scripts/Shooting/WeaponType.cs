@@ -20,6 +20,13 @@ public class WeaponType : ScriptableObject
     [SerializeField] int ammo_currentInside;
     [SerializeField] int ammo_availableStorage;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip sound_shoot;
+    [SerializeField] AudioClip sound_collide;
+    [SerializeField] AudioClip sound_reload;
+    [SerializeField] AudioClip sound_cantshoot;
+    [SerializeField] AudioClip sound_cantreload;
+
     public float getDamage() { return damage; }
 
     public float getMaxShootDist() { return maxShootDist; }
@@ -28,6 +35,11 @@ public class WeaponType : ScriptableObject
     public int getAmmoMaxInside() { return ammo_maxInside; }
     public int getAmmoCurrentInside() { return ammo_currentInside; }
     public int getAmmoAvailableStorage() { return ammo_availableStorage; }
+    public AudioClip getSoundShoot() { return sound_shoot; }
+    public AudioClip getSoundCollide() { return sound_collide; }
+    public AudioClip getSoundReload() { return sound_reload; }
+    public AudioClip getSoundCantShoot() { return sound_cantshoot; }
+    public AudioClip getSoundCantReload() { return sound_cantreload; }
 
     public bool shoot()
     {

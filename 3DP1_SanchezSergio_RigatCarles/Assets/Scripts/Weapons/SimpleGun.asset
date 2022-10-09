@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b13b18fc68ffbd4dbdc87065566d575, type: 3}
   m_Name: SimpleGun
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun Tree
   weaponModel: {fileID: 6378383080127165170, guid: 3d530b5a3e001b54491c8238bd712b25, type: 3}
-  weaponAnimation: {fileID: 2369874812793831403, guid: 0358477b75f874e488fe879072c84072, type: 3}
+  weaponAnimation: {fileID: 8984326935833029981, guid: 3d530b5a3e001b54491c8238bd712b25, type: 3}
   damage: 10
   shootingRatio: 1
   maxShootDist: 1000
-  ammoPerShot: 2
+  ammoPerShot: 1
   ammo_maxInside: 25
-  ammo_currentInside: 1
-  ammo_availableStorage: 346
+  ammo_currentInside: 22
+  ammo_availableStorage: 228
+  sound_shoot: {fileID: 8300000, guid: dd916bfe4e6969f44990581a217f7c86, type: 3}
+  sound_collide: {fileID: 8300000, guid: cc5fa21af806ada4bb806c787ab62104, type: 3}
+  sound_reload: {fileID: 8300000, guid: 081a3a03c5894fb4ca8d62f1f9801e44, type: 3}
+  sound_cantshoot: {fileID: 8300000, guid: 222e2c23ef139b74093ec428bd802f0c, type: 3}
+  sound_cantreload: {fileID: 8300000, guid: 11a323ab9604c4148b1a99d488f6c53a, type: 3}

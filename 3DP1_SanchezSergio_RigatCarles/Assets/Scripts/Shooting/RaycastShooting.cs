@@ -27,6 +27,9 @@ public class RaycastShooting : MonoBehaviour
     [Header("UI")]
     [SerializeField] UnityEvent<int, int> ammoUpdate;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+
     void Start()
     {
         Instantiate(weapon.getWeaponModel(), weaponDummy);
@@ -38,9 +41,15 @@ public class RaycastShooting : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             bool hasShooted = weapon.shoot();
-            if(hasShooted) { raycastShoot(); updateAmmoUI();}
+            if(hasShooted) { raycastShoot(); updateAmmoUI(); playSoundShoot();}
+            else { playSoundCantShoot(); }
         }
-        if (Input.GetKeyDown(reloadKey)) { weapon.reload(); updateAmmoUI(); }
+        if (Input.GetKeyDown(reloadKey)) 
+        { 
+            bool hasReloaded = weapon.reload(); 
+            if (hasReloaded) { updateAmmoUI(); playSoundReload(); }
+            else { playSoundCantReload(); }
+        }
     }
 
     void raycastShoot()
@@ -50,6 +59,8 @@ public class RaycastShooting : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, weapon.getMaxShootDist(), shootingMask))
         {
+            playSoundCollide();
+
             decalPool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
             Instantiate(decalParticles, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
 
@@ -65,4 +76,10 @@ public class RaycastShooting : MonoBehaviour
     {
         ammoUpdate.Invoke(weapon.getAmmoCurrentInside(), weapon.getAmmoAvailableStorage());
     }
+
+    void playSoundShoot() { audioSource.PlayOneShot(weapon.getSoundShoot()); }
+    void playSoundCollide() { audioSource.PlayOneShot(weapon.getSoundCollide()); }
+    void playSoundReload() { audioSource.PlayOneShot(weapon.getSoundReload()); }
+    void playSoundCantShoot() { audioSource.PlayOneShot(weapon.getSoundCantShoot()); }
+    void playSoundCantReload() { audioSource.PlayOneShot(weapon.getSoundCantReload()); }
 }
