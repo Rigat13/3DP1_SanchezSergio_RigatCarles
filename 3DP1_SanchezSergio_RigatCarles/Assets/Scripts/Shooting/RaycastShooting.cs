@@ -30,6 +30,7 @@ public class RaycastShooting : MonoBehaviour
     void Start()
     {
         Instantiate(weapon.getWeaponModel(), weaponDummy);
+        updateAmmoUI();
     }
 
     void Update()

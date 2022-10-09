@@ -21,4 +21,4 @@ MonoBehaviour:
   ammoPerShot: 1
   ammo_maxInside: 10
   ammo_currentInside: 0
-  ammo_availableStorage: 0
+  ammo_availableStorage: 4
