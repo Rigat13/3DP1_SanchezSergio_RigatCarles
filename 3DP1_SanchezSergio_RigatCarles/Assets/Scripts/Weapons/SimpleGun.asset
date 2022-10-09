@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: SimpleGun
   m_EditorClassIdentifier: 
   weaponName: 
-  weaponModel: {fileID: 2305033871253001528, guid: 0358477b75f874e488fe879072c84072, type: 3}
+  weaponModel: {fileID: 6378383080127165170, guid: 3d530b5a3e001b54491c8238bd712b25, type: 3}
   weaponAnimation: {fileID: 2369874812793831403, guid: 0358477b75f874e488fe879072c84072, type: 3}
   damage: 10
   shootingRatio: 1
   maxShootDist: 1000
-  ammoPerShot: 1
-  ammo_maxInside: 10
-  ammo_currentInside: 0
-  ammo_availableStorage: 4
+  ammoPerShot: 2
+  ammo_maxInside: 25
+  ammo_currentInside: 1
+  ammo_availableStorage: 346

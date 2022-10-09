@@ -9,7 +9,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
-/Assets/TerrainSampleAssets
+/Assets/ExternalAssets
 /Assets/TerrainSampleAssets/TerrainBrushes
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored

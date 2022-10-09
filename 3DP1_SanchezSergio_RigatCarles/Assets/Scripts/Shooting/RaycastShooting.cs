@@ -40,7 +40,7 @@ public class RaycastShooting : MonoBehaviour
             bool hasShooted = weapon.shoot();
             if(hasShooted) { raycastShoot(); updateAmmoUI();}
         }
-        if (Input.GetKeyDown(reloadKey)) { weapon.reload(); }
+        if (Input.GetKeyDown(reloadKey)) { weapon.reload(); updateAmmoUI(); }
     }
 
     void raycastShoot()
