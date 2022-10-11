@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] float initialHealth;
+    [SerializeField] float maxHealth;
     float currentHealth;
 
     [SerializeField] UnityEvent onDeath;
@@ -23,6 +24,14 @@ public class HealthSystem : MonoBehaviour
             die();
         }
     }
+
+    public void addHealth(float healthToAdd)
+    {
+        currentHealth += healthToAdd;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+    }
+
 
     private void die()
     {Debug.Log("prevo");

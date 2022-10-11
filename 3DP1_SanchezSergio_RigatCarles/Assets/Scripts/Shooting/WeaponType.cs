@@ -92,26 +92,21 @@ public class WeaponType : ScriptableObject
     {
         weaponAnimation.CrossFade("Shoot", 0.1f);
         weaponAnimation.CrossFadeQueued("Idle");
-        Debug.Log("Shoot");
-        Debug.Log("Bullets in gun: " + ammo_currentInside+ " Bullets outside: " + ammo_availableStorage+ " Bullets max: " + ammo_maxInside);
     }
 
     void animateReload()
     {
         Debug.Log("Reload");
-        Debug.Log("Bullets in gun: " + ammo_currentInside+ " Bullets outside: " + ammo_availableStorage+ " Bullets max: " + ammo_maxInside);
     }
 
     void animateCantShoot()
     {
         Debug.Log("Cant Shoot");
-        Debug.Log("Bullets in gun: " + ammo_currentInside+ " Bullets outside: " + ammo_availableStorage+ " Bullets max: " + ammo_maxInside);
     }
 
     void animateCantReload()
     {
         Debug.Log("Cant Reload");
-        Debug.Log("Bullets in gun: " + ammo_currentInside+ " Bullets outside: " + ammo_availableStorage+ " Bullets max: " + ammo_maxInside);
     }
     
 }
