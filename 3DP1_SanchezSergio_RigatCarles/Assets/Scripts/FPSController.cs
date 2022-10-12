@@ -130,7 +130,7 @@ public class FPSController : MonoBehaviour
 
     void updateHorizontalSpeedByInput()
     {
-        if (Input.GetKey(runKey)) vx_currentSpeed = runSpeed;
+        if (Input.GetKey(runKey) && onGround) vx_currentSpeed = runSpeed;
         else vx_currentSpeed = walkSpeed;
     }
 
