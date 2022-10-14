@@ -7,10 +7,12 @@ public class RaycastShooting : MonoBehaviour
 {
     [SerializeField] Camera camera;
     [SerializeField] ObjectPool decalPool;
-    
     [Header("Shooting")]
+
+    [SerializeField] List<Weapon> weapons;
+    [SerializeField] Weapon.WeaponName currentWeapon;
     [SerializeField] LayerMask shootingMask;
-    [SerializeField] WeaponType weapon;
+    Weapon weapon;
     [SerializeField] Transform weaponDummy;
     [SerializeField] Transform weaponShootingDummy;
     Ray ray;
@@ -32,7 +34,7 @@ public class RaycastShooting : MonoBehaviour
 
     void Start()
     {
-        Instantiate(weapon.getWeaponModel(), weaponDummy);
+        findCurrentWeapon();
         updateAmmoUI();
     }
 
@@ -50,6 +52,34 @@ public class RaycastShooting : MonoBehaviour
             if (hasReloaded) { updateAmmoUI(); playSoundReload(); }
             else { playSoundCantReload(); }
         }
+    }
+
+    void findCurrentWeapon()
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon.getWeaponName() == currentWeapon) { this.weapon = weapon; break;}
+        }
+        weapon.gameObject.SetActive(true);
+        weapon.transform.SetParent(weaponDummy);
+        weapon.transform.position = weaponDummy.position;
+        weapon.transform.rotation = weaponDummy.rotation;
+    }
+
+    void changeCurrentWeapon(Weapon.WeaponName weaponName)
+    {
+        if (weaponName != currentWeapon)
+        {
+            unSetPreviousWeapon();
+            currentWeapon = weaponName;
+            findCurrentWeapon();
+        }
+    }
+
+    void unSetPreviousWeapon()
+    {
+        weapon.gameObject.SetActive(false);
+        weapon.transform.SetParent(null);
     }
 
     void raycastShoot()

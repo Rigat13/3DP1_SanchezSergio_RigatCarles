@@ -20,6 +20,33 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &5636822665844948237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378383080127165170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012d62c3b013b4048a6aca9f871d4597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: 0
+  weaponModel: {fileID: 6378383080127165170}
+  weaponAnimation: {fileID: 8984326935833029981}
+  damage: 5
+  shootingRatio: 0
+  maxShootDist: 200
+  ammoPerShot: 1
+  ammo_maxInside: 0
+  ammo_currentInside: 0
+  ammo_availableStorage: 0
+  sound_shoot: {fileID: 8300000, guid: dd916bfe4e6969f44990581a217f7c86, type: 3}
+  sound_collide: {fileID: 8300000, guid: cc5fa21af806ada4bb806c787ab62104, type: 3}
+  sound_reload: {fileID: 8300000, guid: 081a3a03c5894fb4ca8d62f1f9801e44, type: 3}
+  sound_cantshoot: {fileID: 8300000, guid: 222e2c23ef139b74093ec428bd802f0c, type: 3}
+  sound_cantreload: {fileID: 8300000, guid: 11a323ab9604c4148b1a99d488f6c53a, type: 3}
 --- !u!1001 &6378383080127068474
 PrefabInstance:
   m_ObjectHideFlags: 0

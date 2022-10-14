@@ -21,12 +21,12 @@ public class EnemyAI : MonoBehaviour
         switch(currentState)
         {
             case State.ATTACKING:
-                updateAttacking();
-                changeFromAttacking();
+                //updateAttacking();
+                //changeFromAttacking();
                 break;
             case State.IDLE:
-                updateIdle();
-                changeFromIdle();
+                //updateIdle();
+                //changeFromIdle();
                 break;
         }
         //agent.SetDestination(target.position);

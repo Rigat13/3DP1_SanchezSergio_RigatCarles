@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponType", menuName = "Weapons/Create Weapon")]
-public class WeaponType : ScriptableObject
+public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] string weaponName;
+    public enum WeaponName { GUNTREE, PISTOL, SHOTGUN, RIFLE, SNIPER }
+    [SerializeField] WeaponName weaponName;
     [SerializeField] GameObject weaponModel;
     [SerializeField] Animation weaponAnimation;
 
@@ -40,6 +40,7 @@ public class WeaponType : ScriptableObject
     public AudioClip getSoundReload() { return sound_reload; }
     public AudioClip getSoundCantShoot() { return sound_cantshoot; }
     public AudioClip getSoundCantReload() { return sound_cantreload; }
+    public WeaponName getWeaponName() { return weaponName; }
 
     public bool shoot()
     {
@@ -96,17 +97,20 @@ public class WeaponType : ScriptableObject
 
     void animateReload()
     {
-        Debug.Log("Reload");
+        weaponAnimation.CrossFade("Reload", 0.1f);
+        weaponAnimation.CrossFadeQueued("Idle");
     }
 
     void animateCantShoot()
     {
-        Debug.Log("Cant Shoot");
+        weaponAnimation.CrossFade("CantShoot", 0.1f);
+        weaponAnimation.CrossFadeQueued("Idle");
     }
 
     void animateCantReload()
     {
-        Debug.Log("Cant Reload");
+        weaponAnimation.CrossFade("CantReload", 0.1f);
+        weaponAnimation.CrossFadeQueued("Idle");
     }
     
 }
