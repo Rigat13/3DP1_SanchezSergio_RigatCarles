@@ -12,8 +12,9 @@ public abstract class Weapon : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] float damage = 5f;
     [SerializeField] float shootingRatio;
-    [SerializeField] float maxShootDist = 200f;
+    [SerializeField] float maxDistance = 200f;
     [SerializeField] int ammoPerShot = 1;
+    [SerializeField] float dispersion = 0.1f;
 
     [Header("Ammo")]
     [SerializeField] int ammo_maxInside;
@@ -29,7 +30,6 @@ public abstract class Weapon : MonoBehaviour
 
     public float getDamage() { return damage; }
 
-    public float getMaxShootDist() { return maxShootDist; }
     public GameObject getWeaponModel() { return weaponModel; }
 
     public int getAmmoMaxInside() { return ammo_maxInside; }
@@ -41,6 +41,8 @@ public abstract class Weapon : MonoBehaviour
     public AudioClip getSoundCantShoot() { return sound_cantshoot; }
     public AudioClip getSoundCantReload() { return sound_cantreload; }
     public WeaponName getWeaponName() { return weaponName; }
+    public float getMaxDistance() { return maxDistance; }
+    public float getDispersion() { return dispersion; }
 
     public bool shoot()
     {

@@ -712,6 +712,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1891761868}
     m_Modifications:
     - target: {fileID: 5636822665844948237, guid: 3d530b5a3e001b54491c8238bd712b25, type: 3}
+      propertyPath: dispersion
+      value: 6.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636822665844948237, guid: 3d530b5a3e001b54491c8238bd712b25, type: 3}
       propertyPath: ammo_maxInside
       value: 25
       objectReference: {fileID: 0}
@@ -3455,6 +3459,7 @@ GameObject:
   - component: {fileID: 7817758180269819693}
   - component: {fileID: 7817758180269819689}
   - component: {fileID: 7817758180269819690}
+  - component: {fileID: 7817758180269819697}
   - component: {fileID: 7817758180269819691}
   - component: {fileID: 7817758180269819696}
   - component: {fileID: 7817758180269819692}
@@ -3492,7 +3497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653c1d2b23aa7774882c335de7956b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 7817758181651831412}
+  dispersionCalculator: {fileID: 7817758180269819697}
   decalPool: {fileID: 1478557406}
   weapons:
   - {fileID: 166324619}
@@ -3714,6 +3719,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.0000129, y: 2.253335, z: 3.0000129}
   m_Center: {x: 0, y: 1.1169252, z: 0}
+--- !u!114 &7817758180269819697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817758180269819688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bdb743f2fd9adb43ba03497fd34bda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 7817758181651831412}
 --- !u!1 &7817758180344051844
 GameObject:
   m_ObjectHideFlags: 0

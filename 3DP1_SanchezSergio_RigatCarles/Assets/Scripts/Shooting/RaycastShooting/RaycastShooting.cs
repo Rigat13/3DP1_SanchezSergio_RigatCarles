@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class RaycastShooting : MonoBehaviour
 {
-    [SerializeField] Camera camera;
+    [SerializeField] DispersionCalculator dispersionCalculator;
     [SerializeField] ObjectPool decalPool;
     [Header("Shooting")]
 
@@ -84,10 +84,10 @@ public class RaycastShooting : MonoBehaviour
 
     void raycastShoot()
     {
-        ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        ray = dispersionCalculator.calculateDispersion(weapon.getDispersion(), weapon.getMaxDistance());
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(ray, out hitInfo, weapon.getMaxShootDist(), shootingMask))
+        if (Physics.Raycast(ray, out hitInfo, weapon.getMaxDistance(), shootingMask))
         {
             playSoundCollide();
 
