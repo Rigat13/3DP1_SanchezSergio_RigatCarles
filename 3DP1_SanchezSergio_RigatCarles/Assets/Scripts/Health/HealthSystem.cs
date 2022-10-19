@@ -34,9 +34,7 @@ public class HealthSystem : MonoBehaviour
 
 
     private void die()
-    {Debug.Log("prevo");
+    {
         onDeath.Invoke();
-        Debug.Log("EIIII");
-        Destroy(gameObject);
     }
 }
