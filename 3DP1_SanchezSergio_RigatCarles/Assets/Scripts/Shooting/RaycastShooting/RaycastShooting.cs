@@ -94,9 +94,9 @@ public class RaycastShooting : MonoBehaviour
             decalPool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
             Instantiate(decalParticles, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
 
-            if (hitInfo.collider.gameObject.TryGetComponent(out HealthSystem health))
+            if (hitInfo.collider.gameObject.TryGetComponent(out HitCollider hitCollider))
             {
-                health.takeDamage(weapon.getDamage());
+                hitCollider.takeDamage(weapon.getDamage());
             }
         }
         Instantiate(decalParticles, weaponShootingDummy.position, weaponShootingDummy.rotation);
