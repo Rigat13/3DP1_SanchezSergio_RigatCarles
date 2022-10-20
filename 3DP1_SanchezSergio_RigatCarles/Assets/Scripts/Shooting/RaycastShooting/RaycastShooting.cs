@@ -99,7 +99,8 @@ public class RaycastShooting : MonoBehaviour
                 hitCollider.takeDamage(weapon.getDamage());
             }
         }
-        Instantiate(decalParticles, weaponShootingDummy.position, weaponShootingDummy.rotation);
+        GameObject instantiated = Instantiate(decalParticles, weaponShootingDummy.position, weaponShootingDummy.rotation);
+        instantiated.transform.SetParent(hitInfo.transform);
     }
 
     void updateAmmoUI()
