@@ -89,7 +89,7 @@ public class RaycastShooting : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, weapon.getMaxDistance(), shootingMask))
         {
-            playSoundCollide();
+            //playSoundCollide();
 
             decalPool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
             Instantiate(decalParticles, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));

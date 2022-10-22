@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -52,6 +53,14 @@ public class EnemyAI : MonoBehaviour
     [Header("HIT")]
     State lastState;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip sound_hit;
+    [SerializeField] AudioClip sound_shoot;
+
+    [Header("UI")]
+    [SerializeField] Slider HPSlider;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -89,10 +98,13 @@ public class EnemyAI : MonoBehaviour
                 updateDie();
                 break;
         }
+        HealthSystem hs = gameObject.GetComponent<HealthSystem>();
+        HPSlider.value = hs.currentHealth / hs.maxHealth;
     }
 
     public void getHit()
     {
+        audioSource.PlayOneShot(sound_hit);
         lastState = currentState;
         currentState = State.HIT;
         
@@ -103,7 +115,6 @@ public class EnemyAI : MonoBehaviour
         HealthSystem hs = gameObject.GetComponent<HealthSystem>();
         if (hs.currentHealth <= 0)
         {
-            Debug.Log("Me muero por concocerte, saber que es lo que piensas, abrir todas tus puertas...");
             currentState = State.DIE;
         }
         else
@@ -150,6 +161,10 @@ public class EnemyAI : MonoBehaviour
             newColor.a -= Time.deltaTime;
             mat.color = newColor;
             gameObject.GetComponent<MeshRenderer>().material = mat;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
         
     }
@@ -228,17 +243,27 @@ public class EnemyAI : MonoBehaviour
         //return noObstacleBetweenPlayer() && playerInFieldOfView();   
         //return false;
         //(new Vector3 (transform.position.x,transform.position.y-6,transform.position.z)
+        /*
         Ray r = new Ray(transform.position, player.transform.position - transform.position);
         float playerDist = (player.transform.position - transform.position).magnitude;
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 3, transform.position.z), transform.forward * playerDist, Color.red, 1, true);
         if (Physics.Raycast(r, out RaycastHit hitInfo, playerDist, obstacleMask))
         {
             Debug.Log("Te he visto");
-            return true;//cambiar luego a false
+            return false;//cambiar luego a false
         }
        
-        return false;
-        
+        return true;
+        */
+        Ray r = new Ray(transform.position, player.transform.position - transform.position);
+        float playerDistance = (player.transform.position - transform.position).magnitude;
+        RaycastHit hitInfo;
+        if (Physics.Raycast(r, out hitInfo, playerDistance, obstacleMask))
+        {
+            return false;
+        }
+        Debug.Log("Te he visto");
+        return true;
     }
 
     /* bool noObstacleBetweenPlayer()
@@ -271,6 +296,7 @@ public class EnemyAI : MonoBehaviour
             if ( invulnerabilityStarted > invulnerabilityDuration)
             {
                 ph.takeDamage(damage);
+                audioSource.PlayOneShot(sound_shoot);
                 Debug.Log("Ratatatatatatata");//Play sonido de metralleta
                 invulnerabilityStarted = 0;
 

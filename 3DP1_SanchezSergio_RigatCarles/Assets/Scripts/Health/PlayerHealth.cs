@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] float maxHealth;
+    [SerializeField] public float maxHealth;
     public float currentHealth;
     public float currentShield;
     [SerializeField] float maxShield;
+
 
     [SerializeField] GameObject hud;
     
@@ -17,7 +19,6 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-
 
     public void takeDamage(float damage)
     {
@@ -28,9 +29,9 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = currentHealth - (0.25f * damage);
         }
         currentHealth -= damage;
-        //Debug.Log(currentHealth);
         if (currentHealth <= 0.0f)
         {
+            currentHealth = 0;
             die();
         }
 
@@ -52,15 +53,18 @@ public class PlayerHealth : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "deadzone")
+        if (collider.gameObject.transform.tag=="deadzone")
         {
             takeDamage(99999999999999);
+            takeDamage(10);
             Debug.Log("Get deadzoned");
         }
     }
 
     private void die()
     {
-        hud.SetActive(true);
+
+       SceneManager.LoadScene(2);
+
     }
 }

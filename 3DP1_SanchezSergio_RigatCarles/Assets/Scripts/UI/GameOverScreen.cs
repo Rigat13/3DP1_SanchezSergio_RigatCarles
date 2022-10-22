@@ -8,7 +8,11 @@ public class GameOverScreen : MonoBehaviour
     public void Retry()
     {
         Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(0);
     }
-   
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
 }
