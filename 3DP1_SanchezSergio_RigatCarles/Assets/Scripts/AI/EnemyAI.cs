@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] float hearDistance;
     [SerializeField] float fieldOfViewAngle = 45.0f;
+    
 
     [Header("IDLE")]
     float idleStarted = 0.0f;
@@ -33,9 +35,27 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]float totalRotated = 0.0f;
 
 
+    [Header("DIE")]
+    Material mat;
+
+    [Header("ATTACK")]
+    [SerializeField] float attackRange;
+    [SerializeField] float damage;
+    [SerializeField] ParticleSystem flash;
+    [SerializeField] float invulnerabilityDuration;
+    float invulnerabilityStarted;
+
+    [Header("CHASE")]
+    [SerializeField] float chaseRange;
+    [SerializeField] float chaseSpeed;
+
+    [Header("HIT")]
+    State lastState;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        mat = gameObject.GetComponent<MeshRenderer>().material;
     }
 
     private void Update()
@@ -43,8 +63,8 @@ public class EnemyAI : MonoBehaviour
         switch(currentState)
         {
             case State.ATTACK:
-                //updateAttacking();
-                //changeFromAttacking();
+                updateAttacking();
+                changeFromAttacking();
                 break;
             case State.IDLE:
                 updateIdle();
@@ -58,8 +78,80 @@ public class EnemyAI : MonoBehaviour
                 updateAlert();
                 changeFromAlert();
                 break;
+            case State.CHASE:
+                updateChase();
+                changeFromChase();
+                break;
+            case State.HIT:
+                changeFromHit();
+                break;
+            case State.DIE:
+                updateDie();
+                break;
         }
-        //agent.SetDestination(target.position);
+    }
+
+    public void getHit()
+    {
+        lastState = currentState;
+        currentState = State.HIT;
+        
+    }
+
+    private void changeFromHit()
+    {
+        HealthSystem hs = gameObject.GetComponent<HealthSystem>();
+        if (hs.currentHealth <= 0)
+        {
+            Debug.Log("Me muero por concocerte, saber que es lo que piensas, abrir todas tus puertas...");
+            currentState = State.DIE;
+        }
+        else
+        {
+            if (lastState == State.PATROL || lastState == State.IDLE)
+            {
+                currentState = State.ALERT;
+            }
+            else
+            {
+                currentState = lastState;
+            }
+        }
+    }
+
+    private void changeFromChase()
+    {
+        agent.speed = chaseSpeed;
+        this.transform.LookAt(player.transform);
+        if((transform.position - player.transform.position).magnitude < attackRange)
+        {
+            currentState = State.ATTACK;
+        }
+        if ((transform.position - player.transform.position).magnitude > chaseRange)
+        {
+            currentState = State.PATROL;
+            currentPatrolTarget = 0;
+        }
+
+    }
+
+    private void updateChase()
+    {
+        agent.isStopped = false;
+        agent.SetDestination(player.transform.position);
+        //Debug.Log("chasing");
+    }
+
+    private void updateDie()
+    {
+        Color newColor = mat.color;
+        if (newColor.a > 0)
+        {
+            newColor.a -= Time.deltaTime;
+            mat.color = newColor;
+            gameObject.GetComponent<MeshRenderer>().material = mat;
+        }
+        
     }
 
     void updateIdle()
@@ -86,6 +178,8 @@ public class EnemyAI : MonoBehaviour
             currentPatrolTarget++;
         }
         agent.SetDestination(patrolTargets[currentPatrolTarget % patrolTargets.Count].position);
+
+
     }
 
     void changeFromPatrol()
@@ -119,7 +213,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (seesPlayer())
         {
-            Debug.Log("SEEEEEEESSS");
             currentState = State.CHASE;
         }
         if (!hearsPlayer() || totalRotated >= 360.0f)
@@ -133,15 +226,19 @@ public class EnemyAI : MonoBehaviour
     {
         //if (!hearsPlayer()) return false;
         //return noObstacleBetweenPlayer() && playerInFieldOfView();   
-
-
+        //return false;
+        //(new Vector3 (transform.position.x,transform.position.y-6,transform.position.z)
         Ray r = new Ray(transform.position, player.transform.position - transform.position);
         float playerDist = (player.transform.position - transform.position).magnitude;
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 3, transform.position.z), transform.forward * playerDist, Color.red, 1, true);
         if (Physics.Raycast(r, out RaycastHit hitInfo, playerDist, obstacleMask))
         {
-            return false;
+            Debug.Log("Te he visto");
+            return true;//cambiar luego a false
         }
-        return true;
+       
+        return false;
+        
     }
 
     /* bool noObstacleBetweenPlayer()
@@ -166,14 +263,30 @@ public class EnemyAI : MonoBehaviour
 
     void updateAttacking()
     {
-        agent.SetDestination(target.position);
+        agent.isStopped = true;
+        if ((transform.position - player.transform.position).magnitude < attackRange) {
+            PlayerHealth ph = player.GetComponent<PlayerHealth>();
+            flash.Play();
+            invulnerabilityStarted = invulnerabilityStarted + 0.01f;
+            if ( invulnerabilityStarted > invulnerabilityDuration)
+            {
+                ph.takeDamage(damage);
+                Debug.Log("Ratatatatatatata");//Play sonido de metralleta
+                invulnerabilityStarted = 0;
+
+            }
+            
+            flash.Play();
+        }
+
     }
 
     void changeFromAttacking()
     {
-        if (Vector3.Distance(transform.position, target.position) > 2.0f)
+        if (Vector3.Distance(transform.position, player.transform.position) > attackRange)
         {
-            currentState = State.IDLE;
+            agent.isStopped = false;
+            currentState = State.CHASE;
         }
     }
 }

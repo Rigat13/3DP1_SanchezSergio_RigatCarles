@@ -7,7 +7,7 @@ public class HealthSystem : MonoBehaviour
 {
     [SerializeField] float initialHealth;
     [SerializeField] float maxHealth;
-    float currentHealth;
+    public float currentHealth;
 
     [SerializeField] UnityEvent onDeath;
 
@@ -19,6 +19,9 @@ public class HealthSystem : MonoBehaviour
     public void takeDamage(float damage)
     {
         currentHealth -= damage;
+        EnemyAI enem = gameObject.GetComponent<EnemyAI>();
+        Debug.Log(currentHealth);
+        enem.getHit();
         if (currentHealth <= 0.0f)
         {
             die();

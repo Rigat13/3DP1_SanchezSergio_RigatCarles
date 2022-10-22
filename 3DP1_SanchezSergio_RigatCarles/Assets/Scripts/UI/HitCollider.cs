@@ -13,6 +13,7 @@ public class HitCollider : MonoBehaviour
 
     public void takeDamage(float damage)
     {
+        Debug.Log("Punto debil");
         hs.takeDamage(damage * damageMultiplier);
         agent.speed *= speedMultiplier;
     }
