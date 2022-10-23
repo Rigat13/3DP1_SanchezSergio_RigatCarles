@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyAfterTime : MonoBehaviour
+public class DestroyAfterTimeImage : DestroyAfterTime
 {
-    [SerializeField] float time;
     [SerializeField] float fadeOutTime;
     float colourR, colourG, colourB, colourA;
     MeshRenderer meshRenderer;
+
     IEnumerator destroyCoroutine;
+
     void Awake()
     {
         meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
@@ -19,7 +20,7 @@ public class DestroyAfterTime : MonoBehaviour
         colourA = meshRenderer.material.color.a;
     }
 
-    void OnEnable() 
+    public override void OnEnable() 
     {
         if(destroyCoroutine != null) 
             StopCoroutine(destroyCoroutine);
@@ -38,6 +39,7 @@ public class DestroyAfterTime : MonoBehaviour
             meshRenderer.material.color = new Color(colourR, colourG, colourB, alpha);
             yield return new WaitForEndOfFrame();
         }
+        gameObject.transform.parent = poolParent;
         gameObject.SetActive(false);
     }
 }

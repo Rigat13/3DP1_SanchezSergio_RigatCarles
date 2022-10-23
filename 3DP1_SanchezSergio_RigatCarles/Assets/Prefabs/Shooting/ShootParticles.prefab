@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6587689903836074754}
   - component: {fileID: 6587689903836074755}
   - component: {fileID: 6587689903836074812}
+  - component: {fileID: 2564668249595475708}
   m_Layer: 0
   m_Name: ShootParticles
   m_TagString: Untagged
@@ -4813,3 +4814,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2564668249595475708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6587689903836074813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: effb9d5698107aa4d9e2dd225e4bea6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  poolParent: {fileID: 0}
