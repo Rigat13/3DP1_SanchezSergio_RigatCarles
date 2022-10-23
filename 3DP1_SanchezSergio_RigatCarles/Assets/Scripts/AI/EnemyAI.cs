@@ -256,14 +256,13 @@ public class EnemyAI : MonoBehaviour
         return true;
         */
         Ray r = new Ray(transform.position, player.transform.position - transform.position);
-        float playerDistance = (player.transform.position - transform.position).magnitude;
         RaycastHit hitInfo;
-        if (Physics.Raycast(r, out hitInfo, playerDistance, obstacleMask))
+
+        if (Physics.Raycast(r, out hitInfo, attackRange, obstacleMask))
         {
-            return false;
+            return true;
         }
-        Debug.Log("Te he visto");
-        return true;
+        return false;
     }
 
     /* bool noObstacleBetweenPlayer()
