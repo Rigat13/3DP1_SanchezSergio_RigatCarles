@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class RaycastShooting : MonoBehaviour
 {
     [SerializeField] DispersionCalculator dispersionCalculator;
-    [SerializeField] ObjectPool decalPool;
     [Header("Shooting")]
 
     [SerializeField] List<Weapon> weapons;
@@ -21,10 +20,10 @@ public class RaycastShooting : MonoBehaviour
     [SerializeField] KeyCode reloadKey = KeyCode.R;
 
     [Header("VFX")]
-    [SerializeField] GameObject decalParticles;
-    [SerializeField] GameObject decalImage;
+    [SerializeField] ObjectPool hitImagePool;
+    [SerializeField] ObjectPool hitParticlesPool;
+    [SerializeField] ObjectPool shootParticlesPool;
     [SerializeField] float zOffset;
-    [SerializeField] GameObject weaponParticles;
 
     [Header("UI")]
     [SerializeField] UnityEvent<int, int> ammoUpdate;
@@ -82,25 +81,34 @@ public class RaycastShooting : MonoBehaviour
         weapon.transform.SetParent(null);
     }
 
-    void raycastShoot()
+    void shoot()
+    {
+        playSoundShoot();
+        shootParticlesPool.enableObject(weaponShootingDummy.position, weaponShootingDummy.rotation);
+
+        RaycastHit hitInfo = raycastShoot();
+        if (hitInfo.collider != null)
+        {
+            playSoundCollide();
+            hitImagePool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
+            hitParticlesPool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
+            doDamage(hitInfo.collider.gameObject);
+        }
+    }
+
+    RaycastHit raycastShoot()
     {
         ray = dispersionCalculator.calculateDispersion(weapon.getDispersion(), weapon.getMaxDistance());
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(ray, out hitInfo, weapon.getMaxDistance(), shootingMask))
-        {
-            //playSoundCollide();
+        Physics.Raycast(ray, out hitInfo, weapon.getMaxDistance(), shootingMask);
+        return hitInfo;
+    }
 
-            decalPool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
-            Instantiate(decalParticles, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-
-            if (hitInfo.collider.gameObject.TryGetComponent(out HitCollider hitCollider))
-            {
-                hitCollider.takeDamage(weapon.getDamage());
-            }
-        }
-        GameObject instantiated = Instantiate(decalParticles, weaponShootingDummy.position, weaponShootingDummy.rotation);
-        instantiated.transform.SetParent(hitInfo.transform);
+    void doDamage(GameObject gameObject)
+    {
+        if (gameObject.TryGetComponent(out HitCollider hitCollider))
+            hitCollider.takeDamage(weapon.getDamage());
     }
 
     void updateAmmoUI()
