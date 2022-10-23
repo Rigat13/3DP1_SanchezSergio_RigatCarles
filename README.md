@@ -13,6 +13,7 @@ _(més enllà de les bases establertes a classe)_
     - Disseny d'escenari
     - Partícules i emparentació de disparar
     - Disseny i animació de HUD
+    - Àudio de disparar
 
 Assets externs:
 
