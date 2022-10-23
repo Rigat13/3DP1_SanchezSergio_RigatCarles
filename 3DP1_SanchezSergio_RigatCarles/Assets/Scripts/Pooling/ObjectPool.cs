@@ -6,6 +6,7 @@ public class ObjectPool : MonoBehaviour
 {
     [SerializeField] int numberOfObjects;
     [SerializeField] GameObject objectToPool;
+    [SerializeField] bool areParticles;
     List<GameObject> pooledObjects = new List<GameObject>();
 
     void Awake()
@@ -16,16 +17,13 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public GameObject enableObject(Vector3 position, Quaternion rotation)
+    public GameObject enableObject(Vector3 position, Quaternion rotation, Transform parent)
     {
         GameObject obj = getAvailableObject();
         pooledObjects.Remove(obj);
         pooledObjects.Add(obj);
 
-        obj.SetActive(true);
-        obj.transform.position = position;
-        obj.transform.rotation = rotation;
-
+        activateObject(obj, position, rotation, parent);
         return obj;
     }
 
@@ -47,5 +45,14 @@ public class ObjectPool : MonoBehaviour
         obj.SetActive(false);
         pooledObjects.Add(obj);
         return obj;
+    }
+
+    void activateObject(GameObject obj, Vector3 position, Quaternion rotation, Transform parent)
+    {
+        obj.SetActive(true);
+        obj.transform.position = position;
+        obj.transform.rotation = rotation;
+        obj.transform.parent = parent;
+        if (areParticles) { obj.GetComponent<ParticleSystem>().Play(); }
     }
 }

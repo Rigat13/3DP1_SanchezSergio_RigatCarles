@@ -42,7 +42,7 @@ public class RaycastShooting : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             bool hasShooted = weapon.shoot();
-            if(hasShooted) { raycastShoot(); updateAmmoUI(); playSoundShoot();}
+            if(hasShooted) { shoot(); updateAmmoUI(); playSoundShoot();}
             else { playSoundCantShoot(); }
         }
         if (Input.GetKeyDown(reloadKey)) 
@@ -84,14 +84,18 @@ public class RaycastShooting : MonoBehaviour
     void shoot()
     {
         playSoundShoot();
-        shootParticlesPool.enableObject(weaponShootingDummy.position, weaponShootingDummy.rotation);
+        shootParticlesPool.enableObject(weaponShootingDummy.position, weaponShootingDummy.rotation, weaponShootingDummy);
 
         RaycastHit hitInfo = raycastShoot();
         if (hitInfo.collider != null)
         {
+            Vector3 position = hitInfo.point + hitInfo.normal * zOffset;
+            Quaternion rotation = Quaternion.LookRotation(hitInfo.normal);
+            Transform parent = hitInfo.collider.transform;
+            
             playSoundCollide();
-            hitImagePool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
-            hitParticlesPool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
+            hitImagePool.enableObject(position, rotation, parent);
+            hitParticlesPool.enableObject(position, rotation, parent);
             doDamage(hitInfo.collider.gameObject);
         }
     }
