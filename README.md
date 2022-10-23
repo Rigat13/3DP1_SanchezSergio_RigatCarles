@@ -14,6 +14,7 @@ _(més enllà de les bases establertes a classe)_
     - Partícules i emparentació de disparar
     - Disseny i animació de HUD
     - Àudio de disparar
+    - Textures de superfícies i núvols
 
 Assets externs:
 
