@@ -1,9 +1,18 @@
 # 3DP1_SanchezSergio_RigatCarles
 
 Crèdits:
+_(més enllà de les bases establertes a classe)_
 
 - Sergio Sánchez
+    - Finalització d'estats i atac d'IA
+    - Escut i Vida relacionats amb HUD
+    - Zona mortal
+    - Partícules d'IA
 - Carles Rigat
+    - Millora salt
+    - Disseny d'escenari
+    - Partícules i emparentació de disparar
+    - Disseny i animació de HUD
 
 Assets externs:
 
