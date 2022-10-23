@@ -16,7 +16,7 @@ public class TitleScreen : MonoBehaviour
         }
     }
 
-    void startGame()
+    public void startGame()
     {
         canvasAnimator.SetTrigger("StartGame");
         gameManager.StartGame();
