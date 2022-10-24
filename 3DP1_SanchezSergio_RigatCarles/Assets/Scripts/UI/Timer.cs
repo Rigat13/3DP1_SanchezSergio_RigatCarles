@@ -20,7 +20,6 @@ public class Timer : MonoBehaviour
     void Start()
     {
         initialTime = time;
-        startTimer();
     }
 
     public void startTimer()
@@ -60,5 +59,6 @@ public class Timer : MonoBehaviour
     public void stopTimer()
     {
         StopAllCoroutines();
+        endTimer();
     }
 }

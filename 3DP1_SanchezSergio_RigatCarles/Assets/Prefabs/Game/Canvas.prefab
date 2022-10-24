@@ -68,6 +68,9 @@ MonoBehaviour:
   time: 20
   endingTime: 10
   animator: {fileID: 4531100567025243881}
+  audioSource: {fileID: 0}
+  endingTimeClip: {fileID: 0}
+  endClip: {fileID: 0}
 --- !u!1 &327780785400375519
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +145,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283519487
+    rgba: 4284344314
   m_fontColor: {r: 0.9811321, g: 0.90700895, b: 0.36561054, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
