@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour
     public float currentShield;
     [SerializeField] float maxShield;
     [SerializeField] GameObject hud;
+    [SerializeField] Door doorToUnclock;
     
     private void Awake()
     {
@@ -69,5 +70,10 @@ public class PlayerStats : MonoBehaviour
     private void die()
     {
        SceneManager.LoadScene(2);
+    }
+
+    public bool unlock(int keyCodeToUnclock)
+    {
+        return doorToUnclock.unlock(keyCodeToUnclock);
     }
 }

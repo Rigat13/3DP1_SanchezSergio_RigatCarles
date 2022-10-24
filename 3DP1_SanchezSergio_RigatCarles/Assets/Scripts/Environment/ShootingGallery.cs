@@ -46,7 +46,9 @@ public class ShootingGallery : MonoBehaviour
             blockades.SetActive(false);
         }
         winAnimator.SetTrigger("win");
+        timer.hasWon();
         deactivate();
+        restart();
     }
 
     public void deactivate()

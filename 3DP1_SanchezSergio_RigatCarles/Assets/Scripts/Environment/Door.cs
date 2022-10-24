@@ -7,30 +7,36 @@ public class Door : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] bool locked = true;
 
-    [SerializeField] GameObject worldToSpawnDespawn;
-    [SerializeField] bool spawnOnUnlock = false;
+    [SerializeField] int keyCodeToUnlock = 0;
 
-    public bool unlock()
+    public bool unlock(int keyCodeToUnlock)
     {
+        if (keyCodeToUnlock != this.keyCodeToUnlock) return false;
         if (!locked) return false;
         locked = false;
+        open();
         return true;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player" && !locked)
-        {
-            animator.SetTrigger("open");
-            
-        }
+            open();
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player" && !locked)
-        {
-            animator.SetTrigger("close");
-        }
+            close();
+    }
+
+    void open()
+    {
+        animator.SetTrigger("open");
+    }
+
+    void close()
+    {
+        animator.SetTrigger("close");
     }
 }

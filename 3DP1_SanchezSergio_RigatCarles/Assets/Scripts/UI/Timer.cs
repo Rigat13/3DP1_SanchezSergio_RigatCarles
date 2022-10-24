@@ -63,4 +63,9 @@ public class Timer : MonoBehaviour
         StopAllCoroutines();
         endTimer();
     }
+
+    public void hasWon()
+    {
+        stopTimer();
+    }
 }
