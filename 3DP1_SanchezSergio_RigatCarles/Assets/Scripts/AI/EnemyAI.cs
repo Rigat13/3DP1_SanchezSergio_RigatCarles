@@ -38,6 +38,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("DIE")]
     Material mat;
+    [SerializeField] ParticleSystem explosion;
 
     [Header("ATTACK")]
     [SerializeField] float attackRange;
@@ -104,7 +105,7 @@ public class EnemyAI : MonoBehaviour
 
     public void getHit()
     {
-        audioSource.PlayOneShot(sound_hit);
+        
         lastState = currentState;
         currentState = State.HIT;
         
@@ -150,7 +151,6 @@ public class EnemyAI : MonoBehaviour
     {
         agent.isStopped = false;
         agent.SetDestination(player.transform.position);
-        //Debug.Log("chasing");
     }
 
     private void updateDie()
@@ -158,6 +158,7 @@ public class EnemyAI : MonoBehaviour
         Color newColor = mat.color;
         if (newColor.a > 0)
         {
+            explosion.Play();
             newColor.a -= Time.deltaTime;
             mat.color = newColor;
             gameObject.GetComponent<MeshRenderer>().material = mat;
@@ -166,7 +167,6 @@ public class EnemyAI : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
 
     void updateIdle()
@@ -239,51 +239,16 @@ public class EnemyAI : MonoBehaviour
 
     bool seesPlayer()
     {
-        //if (!hearsPlayer()) return false;
-        //return noObstacleBetweenPlayer() && playerInFieldOfView();   
-        //return false;
-        //(new Vector3 (transform.position.x,transform.position.y-6,transform.position.z)
-        /*
-        Ray r = new Ray(transform.position, player.transform.position - transform.position);
+        Ray r = new Ray(transform.position, transform.forward);
         float playerDist = (player.transform.position - transform.position).magnitude;
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 3, transform.position.z), transform.forward * playerDist, Color.red, 1, true);
-        if (Physics.Raycast(r, out RaycastHit hitInfo, playerDist, obstacleMask))
-        {
-            Debug.Log("Te he visto");
-            return false;//cambiar luego a false
-        }
-       
-        return true;
-        */
-        Ray r = new Ray(transform.position, player.transform.position - transform.position);
-        RaycastHit hitInfo;
-
-        if (Physics.Raycast(r, out hitInfo, attackRange, obstacleMask))
+        if (Physics.Raycast(r, out RaycastHit hitInfo, chaseRange, obstacleMask))
         {
             return true;
         }
+
         return false;
     }
 
-    /* bool noObstacleBetweenPlayer()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit))
-        {
-            if (hit.collider.gameObject == player)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    bool playerInFieldOfView()
-    {
-        Vector3 directionToPlayer = player.transform.position - transform.position;
-        float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
-        return angleToPlayer < fieldOfViewAngle;
-    } */
 
     void updateAttacking()
     {
