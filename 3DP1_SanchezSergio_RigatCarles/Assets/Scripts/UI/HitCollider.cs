@@ -7,14 +7,17 @@ public class HitCollider : MonoBehaviour
 {
     [SerializeField] HealthSystem hs;
     [SerializeField] float damageMultiplier;
+    [SerializeField] ParticleSystem weakPointPart;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip sound_hit;
 
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] float speedMultiplier; // X, no sobreescriure canvis de velocitat de l'EnemyAI segons estat
 
     public void takeDamage(float damage)
     {
-        Debug.Log("Punto debil");
+        audioSource.PlayOneShot(sound_hit);
+        weakPointPart.Play();
         hs.takeDamage(damage * damageMultiplier);
-        agent.speed *= speedMultiplier;
+
     }
 }
