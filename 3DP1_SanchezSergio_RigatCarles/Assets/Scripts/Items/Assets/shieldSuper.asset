@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c95e9172e7cba87439cf5179921762a8, type: 3}
-  m_Name: superHealth
+  m_Script: {fileID: 11500000, guid: 60721b5769b23614880fcd97185aae7e, type: 3}
+  m_Name: shieldSuper
   m_EditorClassIdentifier: 
-  healthToAdd: 100
+  shieldToAdd: 25

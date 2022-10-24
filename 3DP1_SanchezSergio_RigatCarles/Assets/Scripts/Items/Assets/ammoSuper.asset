@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c95e9172e7cba87439cf5179921762a8, type: 3}
-  m_Name: miniHealth
+  m_Script: {fileID: 11500000, guid: 92bc8878f3b25f448a92c546ffd04a1a, type: 3}
+  m_Name: ammoSuper
   m_EditorClassIdentifier: 
-  healthToAdd: 30
+  ammoToAdd: 50

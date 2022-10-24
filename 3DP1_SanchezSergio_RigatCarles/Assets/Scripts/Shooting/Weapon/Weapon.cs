@@ -20,6 +20,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] int ammo_maxInside;
     [SerializeField] int ammo_currentInside;
     [SerializeField] int ammo_availableStorage;
+    [SerializeField] int ammo_maxStorage;
 
     [Header("Audio")]
     [SerializeField] AudioClip sound_shoot;
@@ -113,6 +114,19 @@ public abstract class Weapon : MonoBehaviour
     {
         weaponAnimation.CrossFade("CantReload", 0.1f);
         weaponAnimation.CrossFadeQueued("Idle");
+    }
+
+    public bool addAmmo(int amount)
+    {
+        if (ammo_availableStorage >= ammo_maxStorage)
+        {
+            return false;
+        }
+        else
+        {
+            ammo_availableStorage += amount;
+            return true;
+        }
     }
     
 }

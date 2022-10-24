@@ -289,16 +289,14 @@ public class EnemyAI : MonoBehaviour
     {
         agent.isStopped = true;
         if ((transform.position - player.transform.position).magnitude < attackRange) {
-            PlayerHealth ph = player.GetComponent<PlayerHealth>();
+            PlayerStats playerStats = player.GetComponent<PlayerStats>();
             flash.Play();
             invulnerabilityStarted = invulnerabilityStarted + 0.01f;
             if ( invulnerabilityStarted > invulnerabilityDuration)
             {
-                ph.takeDamage(damage);
+                playerStats.takeDamage(damage);
                 audioSource.PlayOneShot(sound_shoot);
-                Debug.Log("Ratatatatatatata");//Play sonido de metralleta
                 invulnerabilityStarted = 0;
-
             }
             
             flash.Play();

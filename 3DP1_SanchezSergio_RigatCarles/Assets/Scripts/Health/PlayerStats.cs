@@ -4,17 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     [SerializeField] public float maxHealth;
     public float currentHealth;
     public float currentShield;
     [SerializeField] float maxShield;
-
-
     [SerializeField] GameObject hud;
     
-
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -34,21 +31,29 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
             die();
         }
-
     }
 
-    public void addHealth(float healthToAdd)
+    public bool addHealth(float healthToAdd)
     {
+        if (currentHealth >= maxHealth) return false;
+
         currentHealth += healthToAdd;
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        return true;
     }
 
-    public void addShield(float shieldToAdd)
+    public bool addShield(float shieldToAdd)
     {
+        if (currentShield >= maxShield) return false;
+
         currentShield += shieldToAdd;
-        if (currentShield > maxShield)
-            currentShield = maxShield;
+        if (currentShield > maxShield) currentShield = maxShield;
+        return true;
+    }
+
+    public bool addAmmo(int ammoToAdd)
+    {
+        return GameObject.Find("Player").GetComponent<RaycastShooting>().addAmmo(ammoToAdd);
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -63,8 +68,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void die()
     {
-
        SceneManager.LoadScene(2);
-
     }
 }

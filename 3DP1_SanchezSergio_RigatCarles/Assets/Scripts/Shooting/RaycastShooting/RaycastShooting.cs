@@ -116,6 +116,13 @@ public class RaycastShooting : MonoBehaviour
         ammoUpdate.Invoke(weapon.getAmmoCurrentInside(), weapon.getAmmoAvailableStorage());
     }
 
+    public bool addAmmo(int amount)
+    {
+        bool canAdd = weapon.addAmmo(amount);
+        if (canAdd) updateAmmoUI();
+        return canAdd;
+    }
+
     void playSoundShoot() { audioSource.PlayOneShot(weapon.getSoundShoot()); }
     void playSoundCollide() { audioSource.PlayOneShot(weapon.getSoundCollide()); }
     void playSoundReload() { audioSource.PlayOneShot(weapon.getSoundReload()); }

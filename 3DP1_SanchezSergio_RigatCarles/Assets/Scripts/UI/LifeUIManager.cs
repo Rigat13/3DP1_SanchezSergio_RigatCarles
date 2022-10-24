@@ -11,14 +11,14 @@ public class LifeUIManager : MonoBehaviour
     [SerializeField] TMP_Text life_max;
     [SerializeField] TMP_Text shield;
     [SerializeField] Slider life_slider;
-    [SerializeField] PlayerHealth playerH;
+    [SerializeField] PlayerStats playerStats;
 
     private void Update()
     {
-        life_current.text = playerH.currentHealth.ToString()+"/";
-        life_max.text = playerH.maxHealth.ToString();
-        life_slider.value = playerH.currentHealth / playerH.maxHealth;
-        shield.text = playerH.currentShield.ToString();
+        life_current.text = playerStats.currentHealth.ToString()+"/";
+        life_max.text = playerStats.maxHealth.ToString();
+        life_slider.value = playerStats.currentHealth / playerStats.maxHealth;
+        shield.text = playerStats.currentShield.ToString();
         
     }
     /*

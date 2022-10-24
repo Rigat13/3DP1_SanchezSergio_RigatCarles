@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class ConsumableAsset: ScriptableObject
 {
-    abstract public void consume(GameObject consumer);
+    abstract public bool consume(GameObject consumer);
 }
