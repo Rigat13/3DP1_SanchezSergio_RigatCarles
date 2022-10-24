@@ -5,9 +5,14 @@ _(més enllà de les bases establertes a classe)_
 
 - Sergio Sánchez
 	- Finalització d'estats i atac d'IA
+	- Sistema de vida i escut del jugador
 	- Escut i Vida relacionats amb HUD
 	- Zona mortal
 	- Partícules d'IA
+	- Menú de Game Over
+	- Sons dels enemics
+	
+
 - Carles Rigat
 	- Millora salt
 	- Disseny d'escenari
@@ -30,6 +35,7 @@ Assets externs:
 - Enchante feat Mr Stabalina - Slynk - https://www.youtube.com/watch?v=gQcjGcWWymE
 - Countdown - Sonically Sound - https://freesound.org/people/sonically_sound/sounds/612873/
 - Loud Beep Alarm - deleted_user_5614036 - https://freesound.org/people/deleted_user_5614036/sounds/369202/
-
+- Triangle Open 01 - cabled mess- https://pixabay.com/sound-effects/triangle-open-01-102876/
+- BigImpact-AudioPapkin-https://pixabay.com/sound-effects/big-impact-7054/
 	Fonts:
 - Montserrat Font - Julieta Ulanovsky, Sol Matas, Juan Pablo del Peral, Jacques Le Bailly - https://fonts.google.com/specimen/Montserrat?query=Montserrat
