@@ -9,9 +9,11 @@ public class DestroyAfterTimeImage : DestroyAfterTime
     MeshRenderer meshRenderer;
 
     IEnumerator destroyCoroutine;
+    Vector3 initialScale;
 
     void Awake()
     {
+        initialScale = this.transform.localScale;
         meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
 
         colourR = meshRenderer.material.color.r;
@@ -27,6 +29,7 @@ public class DestroyAfterTimeImage : DestroyAfterTime
         meshRenderer.material.color = new Color(colourR, colourG, colourB, colourA);
         destroyCoroutine = destroyAfterTime(time);
         StartCoroutine(destroyCoroutine);
+        StartCoroutine(grow(time));
     }
 
     IEnumerator destroyAfterTime(float time)
@@ -41,5 +44,17 @@ public class DestroyAfterTimeImage : DestroyAfterTime
         }
         gameObject.transform.parent = poolParent;
         gameObject.SetActive(false);
+    }
+
+    IEnumerator grow(float time)
+    {
+        float totalTime = 0.0f;
+        this.transform.localScale = initialScale;
+        while (totalTime < time)
+        {
+            totalTime += Time.deltaTime;
+            this.transform.localScale *= 1.001f;
+            yield return new WaitForEndOfFrame();
+        }
     }
 }
