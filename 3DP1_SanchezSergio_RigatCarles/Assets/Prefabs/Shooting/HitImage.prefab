@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c544db5334fffff4b828fcb5a89bc7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutTime: 0
+  time: 10
+  poolParent: {fileID: 0}
+  fadeOutTime: 4
 --- !u!1 &8752308947795484416
 GameObject:
   m_ObjectHideFlags: 0
