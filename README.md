@@ -21,6 +21,7 @@ _(més enllà de les bases establertes a classe)_
 	- Àudio de disparar
 	- Textures de superfícies i núvols
 	- Temporitzador
+                - Galeria de tir
 
 Assets externs:
 
@@ -36,6 +37,7 @@ Assets externs:
 - Countdown - Sonically Sound - https://freesound.org/people/sonically_sound/sounds/612873/
 - Loud Beep Alarm - deleted_user_5614036 - https://freesound.org/people/deleted_user_5614036/sounds/369202/
 - Triangle Open 01 - cabled mess- https://pixabay.com/sound-effects/triangle-open-01-102876/
-- BigImpact-AudioPapkin-https://pixabay.com/sound-effects/big-impact-7054/
+- BigImpact-AudioPapkin - https://pixabay.com/sound-effects/big-impact-7054/
+- Explosion - Iwiploppenisse - https://freesound.org/people/Iwiploppenisse/sounds/156031/
 	Fonts:
 - Montserrat Font - Julieta Ulanovsky, Sol Matas, Juan Pablo del Peral, Jacques Le Bailly - https://fonts.google.com/specimen/Montserrat?query=Montserrat

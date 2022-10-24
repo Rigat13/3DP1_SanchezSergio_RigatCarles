@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyAfterTimeParticles : DestroyAfterTime
+public class DestroyAfterTimeTotal : DestroyAfterTime
 {
     public override void OnEnable() 
     {
@@ -12,7 +12,6 @@ public class DestroyAfterTimeParticles : DestroyAfterTime
     IEnumerator destroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        gameObject.transform.parent = poolParent;
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

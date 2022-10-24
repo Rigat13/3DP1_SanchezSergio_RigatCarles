@@ -20,8 +20,8 @@ public class HealthSystem : MonoBehaviour
     {
         currentHealth -= damage;
         EnemyAI enem = gameObject.GetComponent<EnemyAI>();
-        Debug.Log(currentHealth);
-        enem.getHit();
+        if (enem != null) enem.getHit();
+
         if (currentHealth <= 0.0f)
         {
             die();

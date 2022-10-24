@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    ShootingGallery shootingGallery;
-    Animator animator;
+    [SerializeField] ShootingGallery shootingGallery;
+    [SerializeField] Animator animator;
 
     public void defeated()
     {
