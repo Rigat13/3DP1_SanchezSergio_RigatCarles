@@ -60,9 +60,6 @@ public class RaycastShooting : MonoBehaviour
             if (weapon.getWeaponName() == currentWeapon) { this.weapon = weapon; break;}
         }
         weapon.gameObject.SetActive(true);
-        weapon.transform.SetParent(weaponDummy);
-        weapon.transform.position = weaponDummy.position;
-        weapon.transform.rotation = weaponDummy.rotation;
     }
 
     void changeCurrentWeapon(Weapon.WeaponName weaponName)
@@ -78,7 +75,6 @@ public class RaycastShooting : MonoBehaviour
     void unSetPreviousWeapon()
     {
         weapon.gameObject.SetActive(false);
-        weapon.transform.SetParent(null);
     }
 
     void shoot()
