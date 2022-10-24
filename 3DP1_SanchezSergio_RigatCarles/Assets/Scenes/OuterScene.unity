@@ -1132,7 +1132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &124361849
 Transform:
   m_ObjectHideFlags: 0
@@ -1898,6 +1898,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: {fileID: 1230062937}
   targetsAnimator: {fileID: 467017445}
+  centreAnimator: {fileID: 1279782337}
+  shootingCentre: {fileID: 2077239780}
   targets:
   - {fileID: 1262308868}
   - {fileID: 321330692}
@@ -22375,7 +22377,12 @@ PrefabInstance:
       propertyPath: endingTimeClip
       value: 
       objectReference: {fileID: 8300000, guid: 88fad1dfe9fbc0b44a86e63f09e776ca, type: 3}
-    m_RemovedComponents: []
+    - target: {fileID: 7697206632932545831, guid: 7e23e1ab3d5dcfd459c0746437195086, type: 3}
+      propertyPath: shootingGallery
+      value: 
+      objectReference: {fileID: 258253759}
+    m_RemovedComponents:
+    - {fileID: 3501815768209220629, guid: 7e23e1ab3d5dcfd459c0746437195086, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7e23e1ab3d5dcfd459c0746437195086, type: 3}
 --- !u!114 &4491802747530208323 stripped
 MonoBehaviour:

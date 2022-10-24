@@ -7,15 +7,26 @@ public class ShootingGallery : MonoBehaviour
 {
     [SerializeField] Timer timer;
     [SerializeField] Animator targetsAnimator;
+    [SerializeField] Animator centreAnimator;
+    [SerializeField] ShootingCentre shootingCentre;
+
     [SerializeField] List<Target> targets;
     int points;
     [SerializeField] UnityEvent<int> onStart;
     [SerializeField] UnityEvent<int> onScore;
 
+    bool firstTime;
+
     public void activate()
     {
-        onStart.Invoke(targets.Count);
+        if (!firstTime) firstTime = true;
+        else restart();
+        
         points = 0;
+
+        onStart.Invoke(targets.Count);
+        onScore.Invoke(points);
+        
         timer.startTimer();
         targetsAnimator.SetTrigger("activate");
     }
@@ -24,6 +35,7 @@ public class ShootingGallery : MonoBehaviour
     {
         timer.stopTimer();
         targetsAnimator.SetTrigger("deactivate");
+        centreAnimator.SetTrigger("deactivate");
     }
 
     public void addPoint()
@@ -31,8 +43,23 @@ public class ShootingGallery : MonoBehaviour
         points++;
         onScore.Invoke(points);
         if (points == targets.Count)
-        {
             deactivate();
+    }
+
+    public void timerEnded()
+    {
+        restart();
+        if (points < targets.Count)
+        {
+            targetsAnimator.SetTrigger("deactivate");
+            centreAnimator.SetTrigger("deactivate");
         }
+    }
+
+    void restart()
+    {
+        foreach (Target target in targets)
+            target.restart();
+        shootingCentre.restart();
     }
 }

@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
     [SerializeField] float endingTime = 10.0f;
     bool isEndingTime;
     [SerializeField] Animator animator;
+    [SerializeField] ShootingGallery shootingGallery;
     
 
     [SerializeField] AudioSource audioSource;
@@ -54,6 +55,7 @@ public class Timer : MonoBehaviour
         animator.SetTrigger("end");
         isEndingTime = false;
         audioSource.PlayOneShot(endClip);
+        shootingGallery.timerEnded();
     }
 
     public void stopTimer()
