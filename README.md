@@ -1,5 +1,12 @@
 # 3DP1_SanchezSergio_RigatCarles
 
+Enllaç de GitHub: https://github.com/Rigat13/3DP1_SanchezSergio_RigatCarles
+_(Nota: hem esborrat alguns assets molt pesats, i a vegades al importar de GitHub no es carrega bé el Terrain)_
+
+Enllaç de WeTransfer afegit al README del GitHub
+
+Enllaç de YouTube afegit al README del GitHub
+
 Crèdits:
 _(més enllà de les bases establertes a classe)_
 
