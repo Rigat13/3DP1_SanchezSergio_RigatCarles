@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    //Transform target;
     NavMeshAgent agent;
     [SerializeField] LayerMask obstacleMask;
 
@@ -39,6 +39,12 @@ public class EnemyAI : MonoBehaviour
     [Header("DIE")]
     Material mat;
     [SerializeField] ParticleSystem explosion;
+    [SerializeField] GameObject lootSpawn1;
+    [SerializeField] GameObject lootSpawn2;
+    [SerializeField] GameObject lootSpawn3;
+    [SerializeField] GameObject lootSpawn4;
+    [SerializeField] GameObject lootSpawn5;
+    [SerializeField] GameObject lootSpawn6;
 
     [Header("ATTACK")]
     [SerializeField] float attackRange;
@@ -165,6 +171,36 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
+
+            int loot = UnityEngine.Random.Range(1, 10);
+            GameObject drop;
+            switch (loot)
+            {
+                case 1:
+                    drop = lootSpawn1;
+                   break;
+                case 2:
+                    drop = lootSpawn2;
+                    break;
+                case 3:
+                    drop = lootSpawn3;
+                    break;
+                case 4:
+                    drop = lootSpawn4;
+                    break;
+                case 5:
+                    drop = lootSpawn5;
+                    break;
+                case 6:
+                    drop = lootSpawn6;
+                    break;
+                default:
+                    break;
+            }
+            if (loot > 6)
+            {
+                Instantiate(lootSpawn1, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }
