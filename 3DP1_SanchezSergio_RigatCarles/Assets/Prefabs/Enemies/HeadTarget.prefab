@@ -476,7 +476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3287422189318309806}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.028310295, y: 1.063863, z: 0.000000076293944}
+  m_LocalPosition: {x: 0.0283103, y: 1.063863, z: 0.000000076293944}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8589407165169325123}
@@ -943,6 +943,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8589407165169325123}
   - component: {fileID: 1157636393362504177}
+  - component: {fileID: 6868342056647824327}
+  - component: {fileID: 6027758128949578629}
+  - component: {fileID: 200522923170016210}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -989,6 +992,62 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &6868342056647824327
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969029580902665977}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.86
+  m_Height: 2.0656197
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0112413, z: 0}
+--- !u!114 &6027758128949578629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969029580902665977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5181035642f0ad3489225351e982026d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &200522923170016210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969029580902665977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d998651172cce40489c059a1d0000b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 1
+  maxHealth: 1
+  currentHealth: 1
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6027758128949578629}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: defeated
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9149301219586826671
 GameObject:
   m_ObjectHideFlags: 0
