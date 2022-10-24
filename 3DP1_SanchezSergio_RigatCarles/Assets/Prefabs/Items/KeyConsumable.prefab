@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74474fa74d81f4840bd5813fcf762dff, type: 2}
+  - {fileID: 2100000, guid: 88f02cce784f35443bf94aaf4de13136, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191,9 +191,8 @@ GameObject:
   - component: {fileID: 7012265566449723472}
   - component: {fileID: 7012265566449723473}
   - component: {fileID: 7012265566449723478}
-  - component: {fileID: 7012265566449723476}
   m_Layer: 0
-  m_Name: AmmoMin_Consumable (2)
+  m_Name: KeyConsumable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -290,21 +289,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.47
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7012265566449723476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7012265566449723437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a853b914a8c65d4b9e36799f4dd863e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consumableAsset: {fileID: 11400000, guid: 15d1304a8d6c5954ca8bd0283821f992, type: 2}
-  animator: {fileID: 7012265566449723475}
-  consumeTime: 0.5
 --- !u!1 &7012265566987932308
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +349,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f6daf0821418d84792f38b6dde93d35, type: 2}
+  - {fileID: 2100000, guid: 9f103445f19c22d4883910175535440f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

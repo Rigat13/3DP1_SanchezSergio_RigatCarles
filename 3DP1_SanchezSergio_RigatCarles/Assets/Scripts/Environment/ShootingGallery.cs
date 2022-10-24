@@ -15,6 +15,12 @@ public class ShootingGallery : MonoBehaviour
     [SerializeField] UnityEvent<int> onStart;
     [SerializeField] UnityEvent<int> onScore;
 
+    [SerializeField] GameObject firstTimeReward;
+    [SerializeField] GameObject blockades;
+    bool firstTimeWon = true;
+
+    [SerializeField] Animator winAnimator;
+
     bool firstTime;
 
     public void activate()
@@ -31,6 +37,18 @@ public class ShootingGallery : MonoBehaviour
         targetsAnimator.SetTrigger("activate");
     }
 
+    public void hasWon()
+    {
+        if (firstTimeWon)
+        {
+            firstTimeWon = false;
+            firstTimeReward.SetActive(true);
+            blockades.SetActive(false);
+        }
+        winAnimator.SetTrigger("win");
+        deactivate();
+    }
+
     public void deactivate()
     {
         timer.stopTimer();
@@ -43,7 +61,7 @@ public class ShootingGallery : MonoBehaviour
         points++;
         onScore.Invoke(points);
         if (points == targets.Count)
-            deactivate();
+            hasWon();
     }
 
     public void timerEnded()

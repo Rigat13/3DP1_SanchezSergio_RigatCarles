@@ -6,8 +6,9 @@ public class ShootingCentre : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] ShootingGallery shootingGallery;
-   [SerializeField] bool canActivate = true;
-   [SerializeField] bool canDeactivate = false;
+
+    bool canActivate = true;
+    bool canDeactivate = false;
     float timeToFullyActivate = 1f;
 
     private void OnTriggerEnter(Collider other) 
@@ -32,8 +33,8 @@ public class ShootingCentre : MonoBehaviour
 
     public void restart()
     {
-        canActivate = true;
         canDeactivate = false;
+        StartCoroutine(WaitToFullyActivate());
     }
 
     IEnumerator WaitToFullyActivate() {
