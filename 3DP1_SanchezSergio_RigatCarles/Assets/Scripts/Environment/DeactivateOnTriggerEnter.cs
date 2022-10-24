@@ -9,6 +9,6 @@ public class DeactivateOnTriggerEnter : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-            Destroy(objectToDeactivate);
+            objectToDeactivate.SetActive(false);
     }
 }

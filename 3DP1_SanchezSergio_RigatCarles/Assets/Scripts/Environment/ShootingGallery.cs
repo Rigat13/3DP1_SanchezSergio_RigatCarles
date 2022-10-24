@@ -26,7 +26,7 @@ public class ShootingGallery : MonoBehaviour
     public void activate()
     {
         if (!firstTime) firstTime = true;
-        else restart();
+        restart();
         
         points = 0;
 
@@ -78,6 +78,7 @@ public class ShootingGallery : MonoBehaviour
 
     void restart()
     {
+        points = 0;
         foreach (Target target in targets)
             target.restart();
         shootingCentre.restart();

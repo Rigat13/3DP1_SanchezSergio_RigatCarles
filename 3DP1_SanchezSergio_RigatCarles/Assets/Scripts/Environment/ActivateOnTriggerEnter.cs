@@ -9,6 +9,6 @@ public class ActivateOnTriggerEnter : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-            Instantiate(objectToActivate);
+            objectToActivate.SetActive(true);
     }
 }

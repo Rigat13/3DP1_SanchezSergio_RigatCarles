@@ -34,7 +34,7 @@ public class ShootingCentre : MonoBehaviour
     public void restart()
     {
         canDeactivate = false;
-        StartCoroutine(WaitToFullyActivate());
+        canActivate = true;
     }
 
     IEnumerator WaitToFullyActivate() {

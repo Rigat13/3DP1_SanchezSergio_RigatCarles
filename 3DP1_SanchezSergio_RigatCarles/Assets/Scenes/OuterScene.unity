@@ -2809,7 +2809,6 @@ GameObject:
   - component: {fileID: 376184894}
   - component: {fileID: 376184893}
   - component: {fileID: 376184896}
-  - component: {fileID: 376184895}
   m_Layer: 0
   m_Name: DoorHolder
   m_TagString: Untagged
@@ -2927,19 +2926,6 @@ MonoBehaviour:
   animator: {fileID: 376184893}
   locked: 1
   keyCodeToUnlock: 0
---- !u!114 &376184895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376184888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0add389d1c00b4abde949be432c99e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToDeactivate: {fileID: 1184965079362830588}
 --- !u!114 &376184896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6339,7 +6325,7 @@ PrefabInstance:
     - target: {fileID: 7012265566449723479, guid: 15adc28e4070b3e42a41c026eec75b82, type: 3}
       propertyPath: consumableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: ea356d55fc7b1be449528139e895bc59, type: 2}
+      objectReference: {fileID: 11400000, guid: 97cff646f524fd743a5e1dc9f97013cc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15adc28e4070b3e42a41c026eec75b82, type: 3}
 --- !u!1 &756780459 stripped

@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f1014717de2e0a4d9a73845be74bb5c, type: 3}
-  m_Name: KeyAsset
+  m_Name: keyAsset
   m_EditorClassIdentifier: 
-  doorToUnlock: {fileID: 0}
+  keyCodeToUnclock: 0

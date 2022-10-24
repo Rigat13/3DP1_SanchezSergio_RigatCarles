@@ -20,6 +20,7 @@ public class Target : MonoBehaviour
         {
             isDefeated = true;
             animator.SetTrigger("defeated");
+            animator.ResetTrigger("restart");
             shootingGallery.addPoint();
         }
     }
