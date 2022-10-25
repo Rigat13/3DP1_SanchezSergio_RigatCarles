@@ -8,4 +8,5 @@ public abstract class DestroyAfterTime : MonoBehaviour
     [SerializeField] protected Transform poolParent;
 
     public abstract void OnEnable();
+    public Transform getPoolParent() { return poolParent; }
 }

@@ -201,7 +201,20 @@ public class EnemyAI : MonoBehaviour
             {
                 Instantiate(lootSpawn1, transform.position, Quaternion.identity);
             }
-            Destroy(gameObject);
+            unParentDecals();
+            gameObject.SetActive(false);
+        }
+    }
+
+    void unParentDecals()
+    {
+        foreach (Transform child in transform)
+        {
+            DestroyAfterTime decal = child.GetComponent<DestroyAfterTime>();
+            if (decal != null)
+            {
+                decal.gameObject.transform.parent = decal.getPoolParent();
+            }
         }
     }
 

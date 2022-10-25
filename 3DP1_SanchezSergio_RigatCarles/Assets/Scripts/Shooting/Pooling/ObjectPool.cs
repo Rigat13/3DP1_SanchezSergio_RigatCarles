@@ -20,6 +20,8 @@ public class ObjectPool : MonoBehaviour
     public GameObject enableObject(Vector3 position, Quaternion rotation, Transform parent)
     {
         GameObject obj = getAvailableObject();
+        if (obj == null) return null;
+        
         pooledObjects.Remove(obj);
         pooledObjects.Add(obj);
 
@@ -29,14 +31,22 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject getAvailableObject()
     {
-        for (int i=0; i<pooledObjects.Count; i++)
+        try
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            for (int i=0; i<pooledObjects.Count; i++)
             {
-                return pooledObjects[i];
+                if (!pooledObjects[i].activeInHierarchy)
+                {
+                    return pooledObjects[i];
+                }
             }
+            return pooledObjects[0];
         }
-        return pooledObjects[0];
+        catch (System.Exception)
+        {
+            if (pooledObjects == null || pooledObjects.Count == 0) return null;
+            else return pooledObjects[0];
+        }
     }
 
     GameObject addObjectToPool()

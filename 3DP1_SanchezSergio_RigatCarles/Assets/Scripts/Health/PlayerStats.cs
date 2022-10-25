@@ -23,8 +23,10 @@ public class PlayerStats : MonoBehaviour
         if (currentShield > 0)
         {
             currentShield = currentShield - (0.75f * damage);
-            Debug.Log(currentShield);
             currentHealth = currentHealth - (0.25f * damage);
+
+            if (currentShield < 0) currentShield = 0;
+            if (currentHealth < 0) currentHealth = 0;
         }
         currentHealth -= damage;
         if (currentHealth <= 0.0f)
