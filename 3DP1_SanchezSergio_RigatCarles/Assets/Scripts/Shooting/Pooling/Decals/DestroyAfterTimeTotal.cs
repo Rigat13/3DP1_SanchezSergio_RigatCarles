@@ -12,6 +12,6 @@ public class DestroyAfterTimeTotal : DestroyAfterTime
     IEnumerator destroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

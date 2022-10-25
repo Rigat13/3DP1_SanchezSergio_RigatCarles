@@ -69,7 +69,7 @@ public class PlayerStats : MonoBehaviour
 
     private void die()
     {
-       SceneManager.LoadScene(2);
+       SceneManager.LoadScene(1);
     }
 
     public bool unlock(int keyCodeToUnclock)

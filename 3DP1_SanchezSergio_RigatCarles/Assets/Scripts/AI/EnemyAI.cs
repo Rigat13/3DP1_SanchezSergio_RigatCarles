@@ -197,7 +197,7 @@ public class EnemyAI : MonoBehaviour
                 default:
                     break;
             }
-            if (loot > 6)
+            if (loot > 1)
             {
                 Instantiate(lootSpawn1, transform.position, Quaternion.identity);
             }
